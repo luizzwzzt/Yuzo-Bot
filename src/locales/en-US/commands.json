@@ -1,0 +1,5 @@
+{
+	"ping": "🏓 **|** Latency: `${ping}ms`\n🌐 **|** API Ping: `103ms`",
+	"help": "Available commands:\n- `!ping` - Shows bot latency.\n- `!info` - Shows information about the bot.\n- `!setprefix <prefix>` - Sets the prefix for commands.\n - `!setlanguage <language>`",
+  "language_changed": "Language has been changed to English."
+}

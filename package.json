@@ -1,0 +1,28 @@
+{
+  "name": "yozu",
+  "version": "1.0.0",
+  "description": "Um bot simples ",
+  "main": "src/Client.js",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node src/Client.js",
+    "start": "cross-env NODE_ENV=production node src/Client.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "undefined"
+  },
+  "keywords": [],
+  "author": "Sweezy",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/voice": "^0.17.0",
+    "colors": "^1.4.0",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.7.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
