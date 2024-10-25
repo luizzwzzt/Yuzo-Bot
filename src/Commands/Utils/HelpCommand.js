@@ -17,7 +17,7 @@ export default class extends Command {
 
 		const lang = (await this.client.dbWrapper.getLanguage(serverId)) || 'pt-BR';
 
-		const langFilePath = join(process.cwd(), `src/locales/${lang}/commands.json`);
+		const langFilePath = join(process.cwd(), `src/Locales/${lang}/commands.json`);
 		const langData = await fs.readFile(langFilePath, 'utf-8');
 		const commands = JSON.parse(langData);
 

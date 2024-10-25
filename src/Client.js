@@ -4,7 +4,7 @@ import { pathToFileURL } from 'url';
 import { join } from 'path';
 import config from './Config/Config.js';
 import { Logger } from './Services/Logger.js';
-import { DBWrapper } from './Database/Schemas/DBWrapper.js';
+import { DBWrapper } from './Database/DBWrapper.js';
 
 class YutzClient extends Client {
 	constructor(options) {

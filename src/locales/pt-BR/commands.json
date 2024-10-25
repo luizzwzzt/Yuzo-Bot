@@ -1,5 +1,14 @@
 {
 	"ping": "🏓 **|** Latência: `${ping}ms`\n🌐 **|** API Ping: `103ms`",
 	"help": "Comandos disponíveis:\n- `!ping` - Mostra a latência do bot.\n- `!info` - Mostra informações sobre o bot.\n- `!setprefix <prefix>` - Define o prefixo para comandos.\n- `!setlanguage <language>` - Altera a linguagem do bot.",
-	"language_changed": "A linguagem foi alterada para Português."
+	"welcomeMessage": "Olá",
+	"helpPrompt": "Use meu comando /ajuda para ver tudo o que posso fazer.",
+	"buttonmention": "Me adicione no seu servidor",
+	"labelmention": "Suporte",
+	"language_changed": "A linguagem do servidor foi alterada para `pt-BR`.",
+
+	"language_already_set": "A linguagem `${lang}`, que você inseriu já está setada no servidor!",
+	"permissioncommand": "Você não tem permissão para usar este comando. Apenas administradores podem usá-lo."
+
+	
 }
