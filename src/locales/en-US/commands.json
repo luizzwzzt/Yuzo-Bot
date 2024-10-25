@@ -8,7 +8,17 @@
 	"language_changed": "Language has been changed to `en-US`.",
 
 	"language_already_set": "The language `${lang}`, which you entered, is already set on the server!",
-	"permissioncommand": "You do not have permission to use this command. Only administrators can use it."
+	"permissioncommand": "You do not have permission to use this command. Only administrators can use it.",
 
-	
+	"setlanguage": {
+		"title": "🌎 Select the language you want to change",
+		"description": "To change the current server language, click the button for the language you want to change below:",
+		"currentLanguageField": "Current Language:",
+		"availablelanguage": "Available language::",
+		"footerText": "Click on the button corresponding to the desired language!",
+		"confirmationMessage": "The server language has been set to English.",
+		"languageChangedButton": "Language Changed",
+		"flagLang": "<:portugues:1299200220546076753> Português\n<:ingles:1299200368806465668> English"
+
+	}
 }

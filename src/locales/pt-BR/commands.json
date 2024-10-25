@@ -8,7 +8,17 @@
 	"language_changed": "A linguagem do servidor foi alterada para `pt-BR`.",
 
 	"language_already_set": "A linguagem `${lang}`, que você inseriu já está setada no servidor!",
-	"permissioncommand": "Você não tem permissão para usar este comando. Apenas administradores podem usá-lo."
+	"permissioncommand": "Você não tem permissão para usar este comando. Apenas administradores podem usá-lo.",
 
-	
+	"setlanguage": {
+		"title": "🌎 Selecione o idioma que deseja alterar",
+		"description": "Para alterar o idioma atual do servidor, clique no botão do idioma que deseja alterar abaixo:",
+		"currentLanguageField": "Idioma atual do servidor:",
+		"availablelanguage": "Idiomas disponíveis:",
+		"footerText": "Clique no botão correspondente à linguagem desejada!",
+		"confirmationMessage": "O idioma do servidor foi definido para Português.",
+		"languageChangedButton": "Idioma Alterado",
+		"flagLang": "<:portugues:1299200220546076753> Português\n<:ingles:1299200368806465668> English"
+
+	}
 }

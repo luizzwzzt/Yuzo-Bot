@@ -1,6 +1,5 @@
 import Command from '../../Handlers/Command.js';
-import { join } from 'path';
-import { promises as fs } from 'fs';
+import { getCurrentLanguage, getText } from '../../Functions/Language.js';
 
 export default class extends Command {
 	constructor(client) {
@@ -11,16 +10,11 @@ export default class extends Command {
 	}
 
 	async run(interaction) {
-		const serverId = interaction.guild.id;
+		const currentLang = await getCurrentLanguage(interaction, this.client);
+		const PingMessage = await getText('ping', currentLang);
 
-		const lang = await this.client.dbWrapper.getLanguage(serverId) || 'pt-BR';
+		const PingMessage2 = PingMessage.replace('${ping}', this.client.ws.ping);
 
-		const langFilePath = join(process.cwd(), `src/Locales/${lang}/commands.json`);
-		const langData = await fs.readFile(langFilePath, 'utf-8');
-		const commands = JSON.parse(langData);
-
-		const pingMessage = commands.ping.replace('${ping}', this.client.ws.ping);
-
-		await interaction.reply(pingMessage);
+		await interaction.reply(PingMessage2);
 	}
 }
