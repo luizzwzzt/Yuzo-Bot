@@ -1,7 +1,7 @@
 import Event from "../../Handlers/Event.js";
-import { Collection, InteractionType, PermissionsBitField } from "discord.js";
+import { Collection, InteractionType } from "discord.js";
 import config from "../../Config/Config.js";
-import { handleLanguageChange, sendLanguageEmbed } from "../../Functions/Language.js"; // Importa as novas funções
+import { handleLanguageChange } from "../../Functions/Language.js";
 
 const cooldowns = new Collection();
 

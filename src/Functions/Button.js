@@ -1,4 +1,3 @@
-// src/Functions/ButtonCreate.js
 import { ButtonBuilder } from 'discord.js';
 
 /**

@@ -1,49 +1,54 @@
-// src/Events/Client/MessageCreate.js
 import Event from '../../Handlers/Event.js';
-import { ActionRowBuilder, ButtonBuilder, EmbedBuilder } from 'discord.js';
 import { handleXpSystem } from '../../Functions/xpSystem.js';
-import { DBWrapper } from '../../Database/DBWrapper.js'; // Importando a classe DBWrapper
-import ptBR from '../../locales/pt-BR/commands.json' assert { type: 'json' }; // Importando os comandos em português
-import enUS from '../../locales/en-US/commands.json' assert { type: 'json' }; // Importando os comandos em inglês
+import { DBWrapper } from '../../Database/DBWrapper.js';
+import { getText } from '../../Functions/Language.js'; 
+import { Embed } from '../../Functions/Embed.js'; 
+import { Button } from '../../Functions/Button.js'; 
+import { ActionRowBuilder } from 'discord.js';
 
-const dbWrapper = new DBWrapper(); // Instanciando a classe DBWrapper
+const dbWrapper = new DBWrapper();
 
 export default class extends Event {
-    constructor(client) {
-        super(client, {
-            name: 'messageCreate',
-        });
-    }
+	constructor(client) {
+		super(client, {
+			name: 'messageCreate',
+		});
+	}
 
-    run = async (message) => {
-        const serverId = message.guild.id;
-        const lang = await dbWrapper.getLanguage(serverId); // Usando a instância para chamar getLanguage
-        const commands = lang === 'en-US' ? enUS : ptBR;
+	run = async (message) => {
+		const serverId = message.guild.id;
+		const lang = await dbWrapper.getLanguage(serverId);
 
-        const actionRow = new ActionRowBuilder().addComponents([
-            new ButtonBuilder().setStyle('Link').setLabel(`${commands.labelmention}`).setURL('https://discord.gg/59SmBrHU3q'),
-            new ButtonBuilder()
-                .setStyle('Link')
-                .setLabel(`${commands.buttonmention}`)
-                .setURL(
-                    `https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot+identify+guilds+email+applications.commands&permissions=2080374975`
-                ),
-        ]);
+		const welcomeMessage = await getText('welcomeMessage', lang);
+		const helpPrompt = await getText('helpPrompt', lang);
+		const labelMention = await getText('labelmention', lang);
+		const buttonMention = await getText('buttonmention', lang);
 
-        const embed = new EmbedBuilder()
-            .setColor('#2f3136')
-            .setDescription(`${commands.welcomeMessage} ${message.author}! ${commands.helpPrompt}`);
+		const actionRow = new ActionRowBuilder().addComponents([
+			Button({ label: labelMention, url: 'https://luiz-portfolio.online/contact', style: 'Link' }),
+			Button({
+				label: buttonMention,
+				url: `https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot+identify+guilds+email+applications.commands&permissions=2080374975`,
+				style: 'Link',
+			}),
+		]);
 
-        if (message.channel.type === 'DM') return;
-        if (message.author.bot) return;
+		const embed = Embed({
+			description: `${welcomeMessage} ${message.author}! ${helpPrompt}`,
+			title: '', 
+			footer: '',
+		});
 
-        if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) {
-            return message.reply({
-                embeds: [embed],
-                components: [actionRow],
-            });
-        }
+		if (message.channel.type === 'DM') return;
+		if (message.author.bot) return;
 
-        await handleXpSystem(message);
-    };
+		if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) {
+			return message.reply({
+				embeds: [embed],
+				components: [actionRow],
+			});
+		}
+
+		await handleXpSystem(message);
+	};
 }
