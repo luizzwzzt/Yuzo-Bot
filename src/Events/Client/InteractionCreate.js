@@ -15,14 +15,12 @@ export default class extends Event {
   run = async (interaction) => {
     const { client } = interaction;
 
-    // Verifica se é um comando de aplicação
     if (interaction.type === InteractionType.ApplicationCommand) {
       if (interaction.user.bot) return;
 
       const cmd = client.commands.find((c) => c.name === interaction.commandName);
       if (!cmd) return;
 
-      // Verifica se é apenas para donos
       if (cmd.ownerOnly && !config.owners.includes(interaction.user.id)) {
         return interaction.reply({
           content: "Apenas administradores podem utilizar este comando.",
@@ -33,7 +31,6 @@ export default class extends Event {
       const cooldownKey = `${cmd.name}-${interaction.user.id}`;
       const cooldownTime = cooldowns.get(cooldownKey);
 
-      // Verifica cooldown
       if (cmd.cooldown && cooldownTime) {
         const remainingTime = cooldownTime - Date.now();
         if (remainingTime > 0) {
@@ -46,7 +43,6 @@ export default class extends Event {
         }
       }
 
-      // Verifica se o comando possui permissões
       if (cmd.permissions.length > 0) {
         const userPermissions = interaction.member.permissions;
         const missingPermissions = cmd.permissions.filter(
@@ -68,9 +64,14 @@ export default class extends Event {
       }
     }
 
-    // Verifica se a interação é um botão
+    if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
+      const cmd = client.commands.find((c) => c.name === interaction.commandName);
+      if (cmd && typeof cmd.autocomplete === "function") {
+        await cmd.autocomplete(interaction);
+      }
+    }
+
     if (interaction.isButton()) {
-      // Lida com a mudança de idioma
       await handleLanguageChange(interaction);
     }
   };
